@@ -1,0 +1,35 @@
+.root {
+  padding: var(--mantine-spacing-xs);
+  background-color: transparent;
+  border-radius: var(--mantine-radius-md);
+  &:hover {
+    background-color: transparent;
+  }
+  &:where([data-active]) {
+    background-color: var(--mantine-color-purple-2);
+    &:hover {
+      background-color: var(--mantine-color-purple-2);
+    }
+  }
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  height: rem(22px);
+}
+.label {
+  font-size: var(--mantine-font-size-md);
+  color: var(--mantine-color-black);
+  &:hover {
+    color: var(--mantine-color-purple-4);
+  }
+}
+
+.root:where([data-active]) .body .label {
+  color: var(--mantine-color-purple-5);
+  font-weight: 700;
+  &:hover {
+    color: var(--mantine-color-purple-5);
+  }
+}

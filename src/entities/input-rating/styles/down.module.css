@@ -1,0 +1,5 @@
+.down {
+  width: rem(12px);
+  height: rem(12px);
+  transform: rotate(180deg);
+}

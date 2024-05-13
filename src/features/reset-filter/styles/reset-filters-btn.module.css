@@ -1,0 +1,21 @@
+.root {
+  height: rem(42px);
+  align-self: flex-end;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  color: var(--mantine-color-purple-5);
+  padding: 0;
+  border: 0;
+  &:hover {
+    color: var(--mantine-color-purple-4);
+  }
+  &:active {
+    color: var(--mantine-color-purple-6);
+  }
+  &:disabled {
+    color: var(--mantine-color-gray-5);
+    &:hover {
+      color: var(--mantine-color-gray-5);
+    }
+  }
+}

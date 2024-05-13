@@ -1,0 +1,4 @@
+.inputPlaceholder::placeholder {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 400;
+}

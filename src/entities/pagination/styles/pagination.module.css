@@ -1,0 +1,20 @@
+.control {
+  border: rem(1px) solid var(--mantine-color-gray-3);
+  &:where([data-active]) {
+    border: none;
+  }
+  &:disabled {
+    border: rem(1px) solid var(--mantine-color-gray-2);
+  }
+}
+
+.control svg {
+  color: var(--mantine-color-gray-5);
+  &:disabled {
+    color: var(--mantine-color-gray-3);
+  }
+}
+
+.dots {
+  display: none;
+}

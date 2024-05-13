@@ -1,0 +1,26 @@
+.root {
+  max-width: rem(138px);
+}
+.label {
+  font-weight: 700;
+  line-height: var(--mantine-line-height-xs);
+  margin-bottom: rem(8px);
+}
+.input {
+  font-size: var(--mantine-font-size-sm);
+  padding-inline-start: rem(12px);
+  border: rem(1px) solid var(--mantine-color-gray-3);
+  &::placeholder {
+    color: var(--mantine-color-gray-4);
+  }
+  &:hover {
+    border-color: var(--mantine-color-purple-5);
+  }
+  &:focus {
+    border-color: var(--mantine-color-purple-5);
+  }
+}
+
+.section {
+  width: rem(31.5px);
+}

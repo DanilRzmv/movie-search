@@ -1,0 +1,22 @@
+.navbar {
+  background-color: var(--mantine-color-purple-1);
+  padding: rem(24px);
+}
+
+.section_logo {
+  display: flex;
+  align-items: center;
+  gap: rem(12px);
+}
+
+.section_logo span {
+  font-size: rem(24px);
+  color: var(--mantine-color-purple-5);
+}
+
+.section_nav {
+  display: flex;
+  flex-direction: column;
+  gap: rem(16px);
+  margin-top: rem(80px);
+}

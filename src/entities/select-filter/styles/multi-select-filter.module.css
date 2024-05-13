@@ -1,0 +1,8 @@
+.pill {
+  padding-left: 0;
+  background-color: transparent;
+}
+
+.pill button {
+  display: none;
+}
