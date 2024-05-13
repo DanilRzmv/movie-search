@@ -1,37 +1,25 @@
-import { useSelector } from "react-redux";
-import { Group } from "@mantine/core";
-import { RootState } from "../../../app";
-import {
-  MoviesWithGenresLabel,
-  getMoviesState,
-} from "../../../shared/type/type";
+import { Group, Loader } from "@mantine/core";
+import { MoviesWithGenresLabel } from "../../../shared/type/type";
 import { CardMovie } from "../../../entities/card-movie";
+import { useMovies } from "../hooks/useMovies";
+import { EmptyMovies } from "../../../shared/ui/empty-movies/empty-movies";
 
 export const MoviesList = () => {
-  const { movies, genres } = useSelector<RootState>(
-    (state) => state.movies
-  ) as getMoviesState;
+  const { loading, movies } = useMovies();
 
-  const genreMap = genres.reduce((acc: Record<string, string>, genre) => {
-    acc[genre.value] = genre.label;
-    return acc;
-  }, {});
-
-  const updatedMovies: MoviesWithGenresLabel[] = movies.map((movie) => {
-    const genres_label = movie.genre_ids.map(
-      (id) => genreMap[id] || "Unknown Genre"
-    );
-    return {
-      ...movie,
-      genres_label,
-    };
-  });
+  const movieList = loading ? (
+    <Loader color="purple.5" />
+  ) : movies.length ? (
+    movies.map((movie: MoviesWithGenresLabel) => (
+      <CardMovie key={movie.id} movie={movie} />
+    ))
+  ) : (
+    <EmptyMovies />
+  );
 
   return (
-    <Group>
-      {updatedMovies.map((movie: MoviesWithGenresLabel) => (
-        <CardMovie key={movie.id} movie={movie} />
-      ))}
+    <Group justify="center" h={loading ? "100vh" : "auto"}>
+      {movieList}
     </Group>
   );
 };

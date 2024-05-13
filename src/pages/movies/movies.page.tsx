@@ -6,9 +6,9 @@ import { MoviesWithPagination } from "../../widgets/movies-with-pagination";
 
 export const MoviesPage = () => {
   return (
-    <MainContainer size="md">
+    <MainContainer size="mdd">
       <MainTitle>Movies</MainTitle>
-      <Stack gap={24}>
+      <Stack gap={24} mt={40} pb={82}>
         <FiltersSection />
         <MoviesWithPagination />
       </Stack>

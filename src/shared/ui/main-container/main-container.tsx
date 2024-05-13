@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import { Container } from "@mantine/core";
+import classes from "./main-container.module.css";
 
 interface MainContainerProps {
   size: string;
@@ -8,7 +9,7 @@ interface MainContainerProps {
 
 export const MainContainer: FC<MainContainerProps> = ({ children, size }) => {
   return (
-    <Container size={size} pt={40} pl={0} pr={0}>
+    <Container classNames={classes} size={size}>
       {children}
     </Container>
   );
