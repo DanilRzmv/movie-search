@@ -4,7 +4,6 @@ import Image from "next/image";
 import classes from "../styles/card-movie.module.css";
 import { MoviesWithGenresLabel } from "../../../shared/type/type";
 import { formatVote } from "../../../shared/utils/format-vote";
-import NoPoster from "../../../../public/no-poster.jpg";
 
 interface CardMovieProps {
   movie: MoviesWithGenresLabel;
@@ -24,15 +23,11 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
     year: "numeric",
   });
 
-  const posterExist = poster_path
-    ? `https://image.tmdb.org/t/p/original/${poster_path}`
-    : NoPoster;
-
   return (
     <Flex className={classes.card} justify="space-between">
       <Flex wrap="wrap" justify="space-between" maw={398} w="100%">
         <ImageMantine
-          src={posterExist}
+          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           w={119}
           h={170}
           width={119}

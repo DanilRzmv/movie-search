@@ -1,0 +1,9 @@
+.root {
+  padding: rem(40px) 0 0;
+}
+
+@media screen and (max-width: 1276px) {
+  .root {
+    margin: 0 rem(20px);
+  }
+}

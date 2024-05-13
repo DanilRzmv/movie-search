@@ -3,10 +3,22 @@
   padding: rem(24px);
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: rem(10px);
+}
+
+.header img {
+  cursor: pointer;
+}
+
 .section_logo {
   display: flex;
   align-items: center;
   gap: rem(12px);
+  cursor: pointer;
 }
 
 .section_logo span {

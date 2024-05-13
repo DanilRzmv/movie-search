@@ -7,11 +7,12 @@ export interface Filters {
   page: number;
 }
 
-export interface getMoviesState {
+export interface GetMoviesState {
   filters: Filters;
   genres: SelectDataType[];
   movies: Movie[];
   total_pages: number;
+  loading: boolean;
 }
 
 export interface SelectDataType {

@@ -6,4 +6,5 @@ export {
   setPage,
   getMovies,
   resetFilters,
+  setLoading,
 } from "./store/movies/movies-slice";

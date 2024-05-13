@@ -4,15 +4,16 @@ import {
   Filters,
   MoviesAndTotalPages,
   SelectDataType,
-  getMoviesState,
+  GetMoviesState,
 } from "../../../shared/type/type";
 import { filters } from "../../../shared/constants/filters";
 
-const initialState: getMoviesState = {
+const initialState: GetMoviesState = {
   filters: { ...filters },
   genres: [],
   movies: [],
   total_pages: 1,
+  loading: true,
 };
 
 const getMoviesSlice = createSlice({
@@ -31,12 +32,22 @@ const getMoviesSlice = createSlice({
     resetFilters(state, action) {
       state.filters = action.payload;
     },
+    setLoading(state, action) {
+      state.loading = action.payload;
+    },
   },
   extraReducers: (builder) => {
+    builder.addCase(getMovies.pending, (state, action) => {
+      state.loading = true;
+    });
     builder.addCase(getMovies.fulfilled, (state, action) => {
       const { movies, total_pages } = action.payload;
       state.movies = movies;
       state.total_pages = total_pages;
+      state.loading = false;
+    });
+    builder.addCase(getMovies.rejected, (state, action) => {
+      state.movies = [];
     });
   },
 });
@@ -73,7 +84,7 @@ export const getMovies = createAsyncThunk<
   return data;
 });
 
-export const { setGenres, setPage, setFilters, resetFilters } =
+export const { setGenres, setPage, setFilters, resetFilters, setLoading } =
   getMoviesSlice.actions;
 
 export default getMoviesSlice.reducer;

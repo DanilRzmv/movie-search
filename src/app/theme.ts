@@ -1,7 +1,7 @@
 import { Container, createTheme, rem } from "@mantine/core";
 
 const CONTAINER_SIZES: Record<string, string> = {
-  md: rem(980),
+  mdd: rem(980),
 };
 export const theme = createTheme({
   fontFamily: "Inter, sans-serif",

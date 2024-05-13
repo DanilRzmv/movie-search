@@ -36,7 +36,7 @@ export const FiltersSection: FC = () => {
 
   return (
     <form>
-      <Flex wrap="wrap" justify="space-between" rowGap={24}>
+      <Flex wrap="wrap" justify="space-between" rowGap={24} mb={24}>
         <GenresFilter
           key={key("with_genres")}
           {...getInputProps("with_genres")}
@@ -47,8 +47,8 @@ export const FiltersSection: FC = () => {
         />
         <RatingFilter ratingFrom={ratingFrom} ratingTo={ratingTo} />
         <ResetFiltersBtn reset={reset} isResetValues={isResetValues} />
-        <SortByFilter key={key("sort_by")} {...getInputProps("sort_by")} />
       </Flex>
+      <SortByFilter key={key("sort_by")} {...getInputProps("sort_by")} />
     </form>
   );
 };
