@@ -1,6 +1,7 @@
 import { Container, createTheme, rem } from "@mantine/core";
 
 const CONTAINER_SIZES: Record<string, string> = {
+  smm: rem(800),
   mdd: rem(980),
 };
 export const theme = createTheme({

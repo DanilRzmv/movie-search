@@ -1,5 +1,6 @@
 import { Rating, Text, Image as ImageMantine, Flex } from "@mantine/core";
 import { FC } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import classes from "../styles/card-movie.module.css";
 import { MoviesWithGenresLabel } from "../../../shared/type/type";
@@ -10,7 +11,10 @@ interface CardMovieProps {
 }
 
 export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
+  //const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
   const {
+    id,
     poster_path,
     original_title,
     release_date,
@@ -25,7 +29,16 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
 
   return (
     <Flex className={classes.card} justify="space-between">
-      <Flex wrap="wrap" justify="space-between" maw={398} w="100%">
+      <Flex
+        wrap="wrap"
+        justify="space-between"
+        maw={398}
+        w="100%"
+        onClick={() => {
+          // dispatch(getMovie(id));
+          router.push(`/movies/${original_title}`);
+        }}
+      >
         <ImageMantine
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           w={119}
@@ -37,8 +50,14 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
           fallbackSrc="/no-poster.png"
           alt="poster"
         />
-        <Flex direction="column" justify="space-between" maw={263} w="100%">
-          <Flex direction="column" align="flex-start">
+        <Flex
+          direction="column"
+          justify="space-between"
+          maw={263}
+          w="100%"
+          gap={8}
+        >
+          <Flex direction="column" align="flex-start" gap={8}>
             <Text fw={600} size="xl" lineClamp={2} c="purple.5">
               {original_title}
             </Text>
@@ -59,7 +78,7 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
             <Text size="md" c="gray.5">
               Genres
             </Text>
-            <Text size="md" truncate="end">
+            <Text size="md" lineClamp={1}>
               {genres_label.join(", ")}
             </Text>
           </Flex>
