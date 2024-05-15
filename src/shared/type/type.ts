@@ -7,14 +7,6 @@ export interface Filters {
   page: number;
 }
 
-export interface GetMoviesState {
-  filters: Filters;
-  genres: SelectDataType[];
-  movies: Movie[];
-  total_pages: number;
-  loading: boolean;
-}
-
 export interface SelectDataType {
   value: string;
   label: string;
@@ -30,11 +22,59 @@ export interface Movie {
   genre_ids: number[] | string[];
 }
 
-export interface MoviesWithGenresLabel extends Movie {
+export interface ProductionCompanie {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+}
+
+export interface Video {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
+}
+
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export interface MovieDetail extends Omit<Movie, "genre_ids"> {
+  genres: Genre[];
+  runtime: number;
+  budget: number;
+  revenue: number;
+  overview: string;
+  production_companie: ProductionCompanie[];
+  trailer: Video;
+}
+
+export interface MoviesWithGenresLabel extends Omit<Movie, "genre_ids"> {
   genres_label: string[];
 }
 
 export interface MoviesAndTotalPages {
   movies: Movie[];
   total_pages: number;
+}
+
+export type InfoForBigCard = Pick<
+  MovieDetail,
+  "runtime" | "budget" | "revenue" | "release_date"
+>;
+
+export interface GetMoviesState {
+  filters: Filters;
+  genres: SelectDataType[];
+  movies: Movie[];
+  total_pages: number;
+  loading: boolean;
 }

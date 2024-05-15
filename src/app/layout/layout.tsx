@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import { Poppins } from "next/font/google";
 import { AppShell } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { NavLinkTabs } from "../../shared/ui/nav-link-tabs/nav-link-tabs";
 import classes from "./layout.module.css";
 import Logo from "../../../public/Logo.svg";
-import { NavLinkTabs } from "../../shared/ui/nav-link-tabs/nav-link-tabs";
 
 interface Node {
   children?: ReactNode;
@@ -43,7 +43,10 @@ export const Layout: FC<Node> = ({ children }) => {
           <NavLinkTabs
             href="/"
             component={Link}
-            active={pathname === "/"}
+            active={
+              pathname === "/" ||
+              (pathname ? pathname.includes("/movies") : false)
+            }
             label="Movies"
           />
           <NavLinkTabs

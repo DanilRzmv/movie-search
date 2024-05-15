@@ -17,15 +17,17 @@ export const useMovies = () => {
       return acc;
     }, {});
 
-    const updatedMovies: MoviesWithGenresLabel[] = movies.map((movie) => {
-      const genres_label = movie.genre_ids.map(
-        (id) => genreMap[id] || "Unknown Genre"
-      );
-      return {
-        ...movie,
-        genres_label,
-      };
-    });
+    const updatedMovies: MoviesWithGenresLabel[] = movies.map(
+      ({ genre_ids, ...updatedMovie }) => {
+        const genres_label = genre_ids.map(
+          (id) => genreMap[id] || "Unknown Genre"
+        );
+        return {
+          ...updatedMovie,
+          genres_label,
+        };
+      }
+    );
     return { loading, movies: updatedMovies };
   }
 };

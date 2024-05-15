@@ -1,5 +1,4 @@
 .card {
-  max-width: rem(482px);
   width: 100%;
   background-color: var(--mantine-color-white);
   border-radius: rem(12px);
