@@ -1,17 +1,23 @@
-import { Rating, Text, Image as ImageMantine, Flex } from "@mantine/core";
+import {
+  Rating,
+  Text,
+  Image as ImageMantine,
+  Flex,
+  Stack,
+} from "@mantine/core";
 import { FC } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import classes from "../styles/card-movie.module.css";
 import { MoviesWithGenresLabel } from "../../../shared/type/type";
 import { formatVote } from "../../../shared/utils/format-vote";
+import { formatYear } from "../../../shared/utils/format-date";
 
 interface CardMovieProps {
   movie: MoviesWithGenresLabel;
 }
 
 export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
-  //const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const {
     id,
@@ -23,21 +29,14 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
     genres_label,
   } = movie;
 
-  const release_year = new Date(release_date).toLocaleDateString(undefined, {
-    year: "numeric",
-  });
-
   return (
-    <Flex className={classes.card} justify="space-between">
+    <Flex className={classes.card} justify="space-between" maw={482}>
       <Flex
         wrap="wrap"
         justify="space-between"
         maw={398}
         w="100%"
-        onClick={() => {
-          // dispatch(getMovie(id));
-          router.push(`/movies/${original_title}`);
-        }}
+        onClick={() => router.push(`/movies/${id}`)}
       >
         <ImageMantine
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
@@ -62,7 +61,7 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
               {original_title}
             </Text>
             <Text size="md" c="gray.5">
-              {release_year}
+              {formatYear(release_date)}
             </Text>
             <Flex align="center" gap={8}>
               <Rating size={"lg"} count={1} value={1} />
@@ -74,14 +73,16 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
               </Text>
             </Flex>
           </Flex>
-          <Flex gap={8}>
-            <Text size="md" c="gray.5">
-              Genres
-            </Text>
-            <Text size="md" lineClamp={1}>
-              {genres_label.join(", ")}
-            </Text>
-          </Flex>
+          <Stack gap={12}>
+            <Flex gap={8}>
+              <Text size="md" c="gray.5">
+                Genres
+              </Text>
+              <Text size="md" lineClamp={1}>
+                {genres_label.join(", ")}
+              </Text>
+            </Flex>
+          </Stack>
         </Flex>
       </Flex>
       <Rating count={1} size={"lg"} color="purple.5" />

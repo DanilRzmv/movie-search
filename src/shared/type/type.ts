@@ -61,15 +61,16 @@ export interface MoviesWithGenresLabel extends Omit<Movie, "genre_ids"> {
   genres_label: string[];
 }
 
+export interface CardBig extends MoviesWithGenresLabel {
+  runtime: number;
+  budget: number;
+  revenue: number;
+}
+
 export interface MoviesAndTotalPages {
   movies: Movie[];
   total_pages: number;
 }
-
-export type InfoForBigCard = Pick<
-  MovieDetail,
-  "runtime" | "budget" | "revenue" | "release_date"
->;
 
 export interface GetMoviesState {
   filters: Filters;
