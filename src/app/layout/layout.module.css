@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: right;
-  margin: rem(10px) rem(10px) 0 0;
+  margin: rem(20px) rem(20px) 0 0;
 }
 
 .header img {
