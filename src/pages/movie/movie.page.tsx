@@ -4,12 +4,21 @@ import { Anchor, Breadcrumbs, Stack } from "@mantine/core";
 import { getServerSideProps } from "../../../pages/movies/[movieId]";
 import { MovieDetail } from "../../widgets/movie-detail";
 import { MainContainer } from "../../shared/ui/main-container/main-container";
-import { Genre } from "../../shared/type/type";
+import { Genre, MoviesWithGenresLabel } from "../../shared/type/type";
 import { CardMovieBig } from "../../entities/card-movie-big";
 
 export const MoviePage = ({
   movie,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const ratedMovies: MoviesWithGenresLabel[] = JSON.parse(
+    localStorage.getItem("rated-movies") ?? "[]"
+  );
+
+  const ratingMap = ratedMovies.reduce((acc: Record<number, number>, movie) => {
+    acc[movie.id] = movie.rating;
+    return acc;
+  }, {});
+
   const cardMovie = {
     id: movie.id,
     original_title: movie.original_title,
@@ -21,6 +30,7 @@ export const MoviePage = ({
     runtime: movie.runtime,
     budget: movie.budget,
     revenue: movie.revenue,
+    rating: ratingMap[movie.id] ?? null,
   };
 
   return (
@@ -36,8 +46,8 @@ export const MoviePage = ({
         </Breadcrumbs>
         <CardMovieBig movie={cardMovie} />
         <MovieDetail
-          keyYouTube={movie.trailer?.key}
-          title={movie.trailer?.name}
+          keyYouTube={movie.trailer.key}
+          title={movie.trailer.name}
           overview={movie.overview}
           production_companie={movie.production_companie}
         />

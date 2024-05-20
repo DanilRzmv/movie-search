@@ -3,7 +3,9 @@ import { Pagination } from "@mantine/core";
 import classes from "../styles/pagination.module.css";
 
 interface PaginationUIProps {
-  onChange: Dispatch<SetStateAction<number | null>>;
+  onChange:
+    | Dispatch<SetStateAction<number | null>>
+    | Dispatch<SetStateAction<number>>;
   value: number;
   position: string;
   total_pages: number;

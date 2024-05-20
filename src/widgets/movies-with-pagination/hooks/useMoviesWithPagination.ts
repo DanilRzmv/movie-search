@@ -1,14 +1,22 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../../app";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState, getMovies } from "../../../app";
+import { filters } from "../../../shared/constants/filters";
 import {
-  MoviesWithGenresLabel,
   GetMoviesState,
+  MoviesWithGenresLabel,
 } from "../../../shared/type/type";
 
-export const useMovies = () => {
+export const useMoviesWithPagination = () => {
   const { movies, genres, loading } = useSelector<RootState>(
     (state) => state.movies
   ) as GetMoviesState;
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getMovies(filters));
+  }, [dispatch]);
+
   if (loading) {
     return { loading, movies: [] };
   } else {
