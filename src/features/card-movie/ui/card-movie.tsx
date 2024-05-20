@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@mantine/hooks";
-import { Card } from "../../../shared/ui/card/card";
+import { Card } from "../../../entities/card";
 import { MoviesWithGenresLabel } from "../../../shared/type/type";
 
 interface CardMovieProps {

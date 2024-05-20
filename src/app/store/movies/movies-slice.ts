@@ -14,6 +14,8 @@ const initialState: GetMoviesState = {
   movies: [],
   total_pages: 1,
   loading: true,
+  reRenderId: 0,
+  searchRatedMovie: "",
 };
 
 const getMoviesSlice = createSlice({
@@ -34,6 +36,12 @@ const getMoviesSlice = createSlice({
     },
     setLoading(state, action) {
       state.loading = action.payload;
+    },
+    reRenderListRatedMovie(state, action) {
+      state.reRenderId = action.payload;
+    },
+    setSearchRatedMovie(state, action) {
+      state.searchRatedMovie = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -84,7 +92,14 @@ export const getMovies = createAsyncThunk<
   return data;
 });
 
-export const { setGenres, setPage, setFilters, resetFilters, setLoading } =
-  getMoviesSlice.actions;
+export const {
+  setGenres,
+  setPage,
+  setFilters,
+  resetFilters,
+  setLoading,
+  reRenderListRatedMovie,
+  setSearchRatedMovie,
+} = getMoviesSlice.actions;
 
 export default getMoviesSlice.reducer;

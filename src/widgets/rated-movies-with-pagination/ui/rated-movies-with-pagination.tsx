@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import { Group, Stack } from "@mantine/core";
-import { CardMovie } from "../../../entities/card-movie";
+import { CardMovie } from "../../../features/card-movie";
 import { PaginationUI } from "../../../entities/pagination";
-import { MoviesWithGenresLabel } from "../../../shared/type/type";
+import {
+  GetMoviesState,
+  MoviesWithGenresLabel,
+} from "../../../shared/type/type";
 import { chunk } from "../utils/chunk-data";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../app";
 
 export const RatedMoviesWithPagination = () => {
+  const { reRenderId, searchRatedMovie } = useSelector<RootState>(
+    (state) => state.movies
+  ) as GetMoviesState;
   const [activePage, setPage] = useState(1);
   const [ratedMovies, setRatedMovies] = useState<MoviesWithGenresLabel[]>([]);
 
@@ -14,9 +22,17 @@ export const RatedMoviesWithPagination = () => {
       localStorage.getItem("rated-movies") ?? "[]"
     );
     setRatedMovies(ratedMovies);
-  }, []);
+  }, [reRenderId]);
 
-  const paginatedData = chunk(ratedMovies, 4);
+  useEffect(() => {
+    setPage(1);
+  }, [searchRatedMovie]);
+
+  const filteredMovies = ratedMovies.filter((movie) =>
+    movie.original_title.toLowerCase().includes(searchRatedMovie.toLowerCase())
+  );
+
+  const paginatedData = chunk(filteredMovies, 4);
 
   const movies = paginatedData[activePage - 1]?.map((movie) => (
     <CardMovie key={movie.id} movie={movie} />

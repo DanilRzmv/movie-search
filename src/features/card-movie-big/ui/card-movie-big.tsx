@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import { useResponsiveSizeCard } from "../hooks/useResponsiveSizeCard";
-import { Card } from "../../../shared/ui/card/card";
+import { Card } from "../../../entities/card";
 import { formatDate } from "../../../shared/utils/format-date";
 import { formatTime } from "../../../shared/utils/format-duration";
 import { formatCurrency } from "../../../shared/utils/formatCurrency";

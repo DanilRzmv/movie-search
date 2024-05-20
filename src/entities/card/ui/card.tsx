@@ -7,12 +7,12 @@ import {
   Flex,
   Stack,
 } from "@mantine/core";
-import { useRatingModal } from "../../hooks/useRatingModal";
-import { ModalUI } from "../modal/modal";
-import { formatYear } from "../../utils/format-date";
-import { formatVote } from "../../utils/format-vote";
-import { CardBig, MoviesWithGenresLabel } from "../../type/type";
-import classes from "./card.module.css";
+import { useRatingModal } from "../hooks/useRatingModal";
+import { ModalUI } from "../../../shared/ui/modal/modal";
+import { formatYear } from "../../../shared/utils/format-date";
+import { formatVote } from "../../../shared/utils/format-vote";
+import { CardBig, MoviesWithGenresLabel } from "../../../shared/type/type";
+import classes from "../styles/card.module.css";
 
 interface ImageSize {
   w: number;

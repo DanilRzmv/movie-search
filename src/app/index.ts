@@ -7,4 +7,6 @@ export {
   getMovies,
   resetFilters,
   setLoading,
+  reRenderListRatedMovie,
+  setSearchRatedMovie,
 } from "./store/movies/movies-slice";

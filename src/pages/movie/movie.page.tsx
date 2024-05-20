@@ -3,9 +3,9 @@ import { InferGetServerSidePropsType } from "next";
 import { Anchor, Breadcrumbs, Stack } from "@mantine/core";
 import { getServerSideProps } from "../../../pages/movies/[movieId]";
 import { MovieDetail } from "../../widgets/movie-detail";
+import { CardMovieBig } from "../../features/card-movie-big";
 import { MainContainer } from "../../shared/ui/main-container/main-container";
 import { Genre, MoviesWithGenresLabel } from "../../shared/type/type";
-import { CardMovieBig } from "../../entities/card-movie-big";
 
 export const MoviePage = ({
   movie,

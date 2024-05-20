@@ -1,4 +1,4 @@
-import { MoviesWithGenresLabel } from "../type/type";
+import { MoviesWithGenresLabel } from "../../../shared/type/type";
 
 export const setRatedMovie = (movie: MoviesWithGenresLabel, rating: number) => {
   try {

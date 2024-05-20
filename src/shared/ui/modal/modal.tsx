@@ -50,7 +50,7 @@ export const ModalUI: FC<ModalProps> = ({
               <Button
                 radius="md"
                 color="purple.5"
-                fw={700}
+                fw={600}
                 classNames={{ root: classes.root_save }}
                 onClick={() => onSave(ratingModal)}
               >
