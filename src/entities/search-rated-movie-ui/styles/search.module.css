@@ -1,0 +1,35 @@
+.wrapper {
+  --input-height: rem(48px);
+}
+
+.input {
+  padding-inline-start: rem(36px);
+  padding-inline-end: rem(105px);
+  border: rem(1px) solid var(--mantine-color-gray-3);
+  &::placeholder {
+    color: var(--mantine-color-gray-4);
+  }
+  &:hover {
+    border-color: var(--mantine-color-purple-5);
+  }
+  &:focus {
+    border-color: var(--mantine-color-purple-5);
+  }
+}
+
+.input:not(:focus):not(:placeholder-shown):hover {
+  border-color: var(--mantine-color-purple-5);
+}
+
+.input:not(:focus):not(:placeholder-shown) {
+  border-color: var(--mantine-color-gray-2);
+}
+
+.section:where([data-position="left"]) {
+  width: rem(16px);
+  margin-left: rem(12px);
+}
+
+.section:where([data-position="right"]) {
+  margin-right: rem(12px);
+}

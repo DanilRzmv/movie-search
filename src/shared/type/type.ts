@@ -59,6 +59,7 @@ export interface MovieDetail extends Omit<Movie, "genre_ids"> {
 
 export interface MoviesWithGenresLabel extends Omit<Movie, "genre_ids"> {
   genres_label: string[];
+  rating: number;
 }
 
 export interface CardBig extends MoviesWithGenresLabel {
@@ -78,4 +79,6 @@ export interface GetMoviesState {
   movies: Movie[];
   total_pages: number;
   loading: boolean;
+  reRenderId: number;
+  searchRatedMovie: string;
 }

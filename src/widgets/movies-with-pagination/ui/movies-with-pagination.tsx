@@ -1,24 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, getMovies } from "../../../app";
-import { MoviesList } from "../../../features/movies-list";
+import { Group, Loader } from "@mantine/core";
+import { useMoviesWithPagination } from "../hooks/useMoviesWithPagination";
 import { Pagination } from "../../../features/pagination";
-import { filters } from "../../../shared/constants/filters";
-import { GetMoviesState } from "../../../shared/type/type";
+import { CardMovie } from "../../../features/card-movie";
+import { EmptyMovies } from "../../../shared/ui/empty-movies/empty-movies";
+import { MoviesWithGenresLabel } from "../../../shared/type/type";
 
 export const MoviesWithPagination = () => {
-  const { movies, loading } = useSelector<RootState>(
-    (state) => state.movies
-  ) as GetMoviesState;
-  const dispatch = useDispatch<AppDispatch>();
+  const { loading, movies } = useMoviesWithPagination();
 
-  useEffect(() => {
-    dispatch(getMovies(filters));
-  }, [dispatch]);
+  const movieList = loading ? (
+    <Loader color="purple.5" />
+  ) : movies.length ? (
+    movies.map((movie: MoviesWithGenresLabel) => (
+      <CardMovie key={movie.id} movie={movie} />
+    ))
+  ) : (
+    <EmptyMovies />
+  );
 
   return (
     <>
-      <MoviesList />
+      <Group justify="center">{movieList}</Group>
       {movies.length > 0 && !loading && <Pagination />}
     </>
   );

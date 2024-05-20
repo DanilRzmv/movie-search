@@ -21,16 +21,20 @@ export const getMovie = async (movieId: string) => {
     const trailers = data.videos.results.filter(
       (video: Video) => video.type === "Trailer" && video.official
     );
-    const earliestTrailer = trailers.reduce(
-      (
-        earliest: { published_at: string | number | Date },
-        current: { published_at: string | number | Date }
-      ) => {
-        const earliestDate = new Date(earliest.published_at);
-        const currentDate = new Date(current.published_at);
-        return currentDate < earliestDate ? current : earliest;
-      }
-    );
+
+    const earliestTrailer =
+      trailers.length > 0
+        ? trailers.reduce(
+            (
+              earliest: { published_at: string | number | Date },
+              current: { published_at: string | number | Date }
+            ) => {
+              const earliestDate = new Date(earliest.published_at);
+              const currentDate = new Date(current.published_at);
+              return currentDate < earliestDate ? current : earliest;
+            }
+          )
+        : { key: null, name: null };
 
     const movie: MovieDetail = {
       id: data.id,
