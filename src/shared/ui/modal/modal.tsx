@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
+import { ButtonUi } from "../button-ui/button-ui";
 import classes from "./modal.module.css";
 
 interface ModalProps {
@@ -47,15 +48,12 @@ export const ModalUI: FC<ModalProps> = ({
               value={ratingModal}
             />
             <Group>
-              <Button
-                radius="md"
-                color="purple.5"
-                fw={600}
-                classNames={{ root: classes.root_save }}
+              <ButtonUi
+                text="Save"
+                w={74}
+                h={42}
                 onClick={() => onSave(ratingModal)}
-              >
-                Save
-              </Button>
+              />
               <Button
                 variant="transparent"
                 fw={500}

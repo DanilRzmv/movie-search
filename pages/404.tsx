@@ -1,3 +1,3 @@
-export default function Custom404() {
-  return <h1>404 - Page Not Found</h1>;
-}
+import { Custom404 } from "../src/pages/404";
+
+export default Custom404;

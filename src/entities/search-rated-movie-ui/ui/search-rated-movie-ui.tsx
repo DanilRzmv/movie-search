@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { Input } from "@mantine/core";
-import { SearchBtn } from "./search-btn";
 import { SearchIcon } from "./search-icon";
+import { ButtonUi } from "../../../shared/ui/button-ui/button-ui";
 import classes from "../styles/search.module.css";
 
 interface SearchRatedMovieUIProps {
@@ -22,7 +22,7 @@ export const SearchRatedMovieUI: FC<SearchRatedMovieUIProps> = ({
       radius="md"
       rightSectionWidth={88}
       rightSectionPointerEvents="all"
-      rightSection={<SearchBtn />}
+      rightSection={<ButtonUi text="Search" w={88} h={32} />}
       leftSection={<SearchIcon />}
       onChange={(event) => setSearch(event.target.value)}
       value={search}
