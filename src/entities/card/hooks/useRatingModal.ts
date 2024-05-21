@@ -1,7 +1,7 @@
 import { PointerEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useDisclosure } from "@mantine/hooks";
-import { AppDispatch, reRenderListRatedMovie } from "../../../app";
+import { AppDispatch, reRenderListRatedMovie } from "../../../root";
 import { setRatedMovie } from "../utils/set-rated-movie";
 import { removeRatedMovie } from "../utils/remove-rated-movie";
 import { MoviesWithGenresLabel } from "../../../shared/type/type";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, getMovies, setPage } from "../../../app";
+import { AppDispatch, RootState, getMovies, setPage } from "../../../root";
 import { PaginationUI } from "../../../entities/pagination";
 import { GetMoviesState } from "../../../shared/type/type";
 

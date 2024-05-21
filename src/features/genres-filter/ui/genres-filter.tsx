@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres } from "../api/get-genres";
 import { SelectDataType } from "../../../shared/type/type";
 import { MultiSelectFilter } from "../../../entities/select-filter";
-import { AppDispatch, RootState, setGenres } from "../../../app";
+import { AppDispatch, RootState, setGenres } from "../../../root";
 
 export const GenresFilter = ({ ...props }) => {
   const genresExist = useSelector<RootState>(

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "@mantine/core";
-import { AppDispatch, resetFilters } from "../../../app";
+import { AppDispatch, resetFilters } from "../../../root";
 import classes from "../styles/reset-filters-btn.module.css";
 import { Reset } from "@mantine/form/lib/types";
 import { filters } from "../../../shared/constants/filters";
