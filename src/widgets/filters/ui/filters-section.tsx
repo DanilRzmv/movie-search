@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "@mantine/form";
 import { Flex } from "@mantine/core";
-import { AppDispatch, getMovies, setFilters } from "../../../app";
+import { AppDispatch, getMovies, setFilters } from "../../../root";
 import { GenresFilter } from "../../../features/genres-filter";
 import { YearFilter } from "../../../features/year-filter";
 import { RatingFilter } from "../../../features/rating-filter";

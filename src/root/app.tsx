@@ -5,8 +5,19 @@ import { theme } from "./theme";
 import { Layout } from "./layout/layout";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { useRouter } from "next/router";
 
 export function App({ Component, pageProps }: any) {
+  const router = useRouter();
+
+  const AppComponent =
+    router.pathname === "/404" ? (
+      <Component {...pageProps} />
+    ) : (
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    );
   return (
     <Provider store={store}>
       <MantineProvider theme={theme}>
@@ -18,9 +29,7 @@ export function App({ Component, pageProps }: any) {
           />
           <link rel="shortcut icon" href="/favicon.svg" />
         </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {AppComponent}
       </MantineProvider>
     </Provider>
   );

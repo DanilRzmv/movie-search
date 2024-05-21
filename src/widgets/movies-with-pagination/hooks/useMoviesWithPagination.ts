@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, getMovies } from "../../../app";
+import { AppDispatch, RootState, getMovies } from "../../../root";
 import { filters } from "../../../shared/constants/filters";
 import {
   GetMoviesState,

@@ -1,16 +1,3 @@
-.root_save {
-  font-size: var(--mantine-font-size-sm);
-  border: 0;
-  width: rem(74px);
-  height: rem(42px);
-  &:hover {
-    background-color: var(--mantine-color-purple-4);
-  }
-  &:active {
-    background-color: var(--mantine-color-purple-6);
-  }
-}
-
 .root_remove {
   font-size: var(--mantine-font-size-sm);
   color: var(--mantine-color-purple-5);

@@ -8,7 +8,7 @@ import {
 } from "../../../shared/type/type";
 import { chunk } from "../utils/chunk-data";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../app";
+import { RootState } from "../../../root";
 
 export const RatedMoviesWithPagination = () => {
   const { reRenderId, searchRatedMovie } = useSelector<RootState>(

@@ -1,8 +1,6 @@
-.root_search {
+.root {
   font-size: var(--mantine-font-size-sm);
   border: 0;
-  width: rem(88px);
-  height: rem(32px);
   &:hover {
     background-color: var(--mantine-color-purple-4);
   }

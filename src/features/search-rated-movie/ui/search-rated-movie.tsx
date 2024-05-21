@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch, setSearchRatedMovie } from "../../../app";
+import { AppDispatch, setSearchRatedMovie } from "../../../root";
 import { SearchRatedMovieUI } from "../../../entities/search-rated-movie-ui";
 
 export const SearchRatedMovie = () => {
