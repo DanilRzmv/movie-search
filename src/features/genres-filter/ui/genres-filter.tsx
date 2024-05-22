@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres } from "../api/get-genres";
-import { SelectDataType } from "../../../shared/type/type";
+import { GetMoviesState } from "../../../shared/type/type";
 import { MultiSelectFilter } from "../../../entities/select-filter";
 import { AppDispatch, RootState, setGenres } from "../../../root";
 
 export const GenresFilter = ({ ...props }) => {
-  const genresExist = useSelector<RootState>(
-    (state) => state.movies.genres
-  ) as SelectDataType[];
+  const {
+    genres,
+    filters: { with_genres },
+  } = useSelector<RootState>((state) => state.movies) as GetMoviesState;
   const dispatch = useDispatch<AppDispatch>();
-  const [valueInput, setValueInput] = useState<string[]>([]);
 
   useEffect(() => {
     (async () => {
-      if (!genresExist.length) {
+      if (!genres.length) {
         const genres = await getGenres();
         dispatch(setGenres(genres));
       }
     })();
-  }, [dispatch, genresExist]);
+  }, [dispatch, genres]);
 
   return (
     <MultiSelectFilter
       label="Genres"
       placeholder="Select genre"
-      data={genresExist}
-      valueInput={valueInput}
+      data={genres}
+      needPlaceholder={with_genres.length}
       {...props}
     />
   );

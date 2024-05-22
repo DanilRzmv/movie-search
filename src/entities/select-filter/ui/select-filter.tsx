@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import { Select } from "@mantine/core";
 import classes from "../styles/select.module.css";
-import classesSelect from "../styles/select-filter.module.css";
 import classesScrollbar from "../styles/scrollbar.module.css";
 import { CheckMark } from "./check-mark";
 import { SelectDataType } from "../../../shared/type/type";
@@ -30,7 +29,6 @@ export const SelectFilter: FC<SelectFilterProps> = ({
       style={{ marginLeft: marginLeft }}
       classNames={{
         ...classes,
-        input: `${classes.input} ${classesSelect.inputPlaceholder}`,
         section: `${classes.section} ${
           isOpenDropdown ? classes.isOpenDropdown : ""
         }`,

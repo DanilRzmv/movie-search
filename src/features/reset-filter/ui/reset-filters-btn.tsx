@@ -21,6 +21,7 @@ export const ResetFiltersBtn: FC<ResetFiltersBtnProps> = ({
     <Button
       classNames={classes}
       variant="transparent"
+      mt={31}
       onClick={() => {
         dispatch(resetFilters(filters));
         reset();

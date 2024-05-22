@@ -23,6 +23,7 @@ export const RatingFilter: FC<RatingFilter> = ({ ratingFrom, ratingTo }) => {
         {...ratingFrom.getInputProps}
       />
       <InputRating
+        marginTop={31}
         placeholder="To"
         key={ratingTo.key}
         {...ratingTo.getInputProps}

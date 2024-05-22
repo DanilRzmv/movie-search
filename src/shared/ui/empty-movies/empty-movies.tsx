@@ -1,5 +1,5 @@
-import { Stack, Text } from "@mantine/core";
 import Image from "next/image";
+import { Stack, Text } from "@mantine/core";
 import EmptyMoviesSvg from "../../../../public/empty-movies.svg";
 
 export const EmptyMovies = () => {

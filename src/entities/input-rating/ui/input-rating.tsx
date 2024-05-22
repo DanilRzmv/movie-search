@@ -6,11 +6,13 @@ import { ChevronRating } from "./chevron-rating/chevron-rating";
 interface InputRatingProps {
   placeholder: string;
   label?: string;
+  marginTop?: number;
 }
 
 export const InputRating: FC<InputRatingProps> = ({
   placeholder,
   label,
+  marginTop,
   ...props
 }) => {
   return (
@@ -19,9 +21,11 @@ export const InputRating: FC<InputRatingProps> = ({
       rightSection={<ChevronRating />}
       size="md"
       radius="md"
+      mt={marginTop}
       max={10}
       min={0}
       maxLength={10}
+      decimalScale={2}
       placeholder={placeholder}
       label={label}
       {...props}
