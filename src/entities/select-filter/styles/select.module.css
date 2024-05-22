@@ -1,5 +1,4 @@
 .root {
-  align-self: flex-end;
   max-width: rem(284px);
   width: 100%;
 }
@@ -8,6 +7,9 @@
   font-size: var(--mantine-font-size-sm);
   padding-inline-start: rem(12px);
   border: rem(1px) solid var(--mantine-color-gray-3);
+  &::placeholder {
+    color: var(--mantine-color-gray-4);
+  }
   &:hover {
     border-color: var(--mantine-color-purple-5);
   }
@@ -25,6 +27,7 @@
 .section {
   transition: transform 0.3s ease;
 }
+
 .isOpenDropdown {
   transform: rotate(180deg);
 }

@@ -10,14 +10,14 @@ interface MultiSelectFilterProps {
   label: string;
   placeholder: string;
   data: SelectDataType[];
-  valueInput: string[];
+  needPlaceholder: number;
 }
 
 export const MultiSelectFilter: FC<MultiSelectFilterProps> = ({
   label,
   placeholder,
   data,
-  valueInput,
+  needPlaceholder,
   ...props
 }) => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
@@ -30,7 +30,7 @@ export const MultiSelectFilter: FC<MultiSelectFilterProps> = ({
           isOpenDropdown ? classes.isOpenDropdown : ""
         }`,
       }}
-      placeholder={!valueInput?.length ? placeholder : ""}
+      placeholder={!needPlaceholder ? placeholder : ""}
       scrollAreaProps={{
         classNames: classesScrollbar,
         type: "always",

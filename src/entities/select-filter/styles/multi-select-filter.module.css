@@ -1,6 +1,17 @@
+.inputField::placeholder {
+  color: var(--mantine-color-gray-4);
+}
+
+.pillsList {
+  gap: var(--pg-gap-xs);
+}
+
 .pill {
   padding-left: 0;
   background-color: transparent;
+  &:not(:last-of-type)::after {
+    content: ",";
+  }
 }
 
 .pill button {

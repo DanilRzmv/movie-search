@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Group, Stack } from "@mantine/core";
+import { RootState } from "../../../root";
 import { CardMovie } from "../../../features/card-movie";
 import { PaginationUI } from "../../../entities/pagination";
+import { chunk } from "../utils/chunk-data";
 import {
   GetMoviesState,
   MoviesWithGenresLabel,
 } from "../../../shared/type/type";
-import { chunk } from "../utils/chunk-data";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../root";
 
-export const RatedMoviesWithPagination = () => {
+interface RatedMoviesWithPaginationProps {
+  setExistRatedMovie: Dispatch<SetStateAction<number>>;
+}
+
+export const RatedMoviesWithPagination: FC<RatedMoviesWithPaginationProps> = ({
+  setExistRatedMovie,
+}) => {
   const { reRenderId, searchRatedMovie } = useSelector<RootState>(
     (state) => state.movies
   ) as GetMoviesState;
@@ -21,8 +27,9 @@ export const RatedMoviesWithPagination = () => {
     const ratedMovies = JSON.parse(
       localStorage.getItem("rated-movies") ?? "[]"
     );
+    setExistRatedMovie(ratedMovies.length);
     setRatedMovies(ratedMovies);
-  }, [reRenderId]);
+  }, [reRenderId, setExistRatedMovie]);
 
   useEffect(() => {
     setPage(1);

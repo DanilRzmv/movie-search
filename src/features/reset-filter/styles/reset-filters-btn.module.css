@@ -1,6 +1,5 @@
 .root {
   height: rem(42px);
-  align-self: flex-end;
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
   color: var(--mantine-color-purple-5);

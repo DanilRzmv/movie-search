@@ -37,6 +37,7 @@ export const CardMovie: FC<CardMovieProps> = ({ movie }) => {
       additionalInfo={additionalInfo}
       lineClamp={1}
       onCardClick={handleCardClick}
+      cursor="pointer"
     />
   );
 };

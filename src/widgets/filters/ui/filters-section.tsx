@@ -1,8 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "@mantine/form";
+import { zodResolver } from "mantine-form-zod-resolver";
+import { z } from "zod";
 import { Flex } from "@mantine/core";
 import { AppDispatch, getMovies, setFilters } from "../../../root";
+import debounce from "debounce";
 import { GenresFilter } from "../../../features/genres-filter";
 import { YearFilter } from "../../../features/year-filter";
 import { RatingFilter } from "../../../features/rating-filter";
@@ -11,18 +14,42 @@ import { SortByFilter } from "../../../features/sort-by-filter";
 import { filters } from "../../../shared/constants/filters";
 import { CheckResetForm } from "../utils/check-reset-form";
 
+const schema = z
+  .object({
+    vote_averageGte: z.coerce.number().max(10),
+    vote_averageLte: z.coerce.number().max(10),
+  })
+  .refine(
+    ({ vote_averageGte, vote_averageLte }) =>
+      vote_averageGte <= vote_averageLte,
+    {
+      message: "'from' cannot be greater than 'to'",
+      path: ["vote_averageGte"],
+    }
+  );
+
 export const FiltersSection: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [isResetValues, setIsResetValues] = useState(true);
 
-  const { getInputProps, key, reset } = useForm({
+  const debouncedGetMovies = useRef(
+    debounce((values) => {
+      dispatch(getMovies(values));
+    }, 1000)
+  );
+
+  const { getInputProps, key, reset, onSubmit } = useForm({
     mode: "uncontrolled",
+    validateInputOnChange: true,
     initialValues: { ...filters },
     onValuesChange: (values) => {
-      setIsResetValues(CheckResetForm(filters, values));
-      dispatch(setFilters({ ...values }));
-      dispatch(getMovies(values));
+      onSubmit(() => {
+        setIsResetValues(CheckResetForm(filters, values));
+        dispatch(setFilters({ ...values }));
+        debouncedGetMovies.current(values);
+      })();
     },
+    validate: zodResolver(schema),
   });
 
   const ratingFrom = {

@@ -40,6 +40,7 @@ interface CardProps {
   onCardClick?: () => void;
   maxWidth: MaxWidth;
   lineClamp?: number;
+  cursor?: string;
 }
 
 export const Card: FC<CardProps> = ({
@@ -50,6 +51,7 @@ export const Card: FC<CardProps> = ({
   additionalInfoSize,
   maxWidth,
   lineClamp,
+  cursor = "default",
   onCardClick,
 }) => {
   const {
@@ -98,6 +100,7 @@ export const Card: FC<CardProps> = ({
         maw={maxWidth.maxWidthMainContainer}
       >
         <Flex
+          style={{ cursor }}
           wrap={matches ? "wrap" : "nowrap"}
           justify="space-between"
           gap="md"
