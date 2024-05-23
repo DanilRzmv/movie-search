@@ -5,6 +5,7 @@ import {
   MoviesAndTotalPages,
   SelectDataType,
   GetMoviesState,
+  ResponseMessage,
 } from "../../../shared/type/type";
 import { filters } from "../../../shared/constants/filters";
 
@@ -61,7 +62,7 @@ const getMoviesSlice = createSlice({
 });
 
 export const getMovies = createAsyncThunk<
-  MoviesAndTotalPages,
+  MoviesAndTotalPages | ResponseMessage,
   Filters | number,
   { state: RootState }
 >("movies/getMovies", async (args, thunkAPI) => {

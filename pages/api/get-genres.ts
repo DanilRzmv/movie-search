@@ -15,31 +15,31 @@ export default async function handler(
   res: NextApiResponse<ResponseData | Genre[]>
 ) {
   try {
-    if (req.method === Method.GET) {
-      const options = {
-        method: Method.GET,
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-        },
-      };
-
-      const response = await fetch(
-        "https://api.themoviedb.org/3/genre/movie/list?language=en",
-        options
-      );
-      const data = await response.json();
-
-      const genres = data.genres.map((genre: Genre) => {
-        return {
-          value: `${genre.id}`,
-          label: genre.name,
-        };
-      });
-      res.status(200).json(genres);
-    } else {
+    if (req.method !== Method.GET) {
       throw Error();
     }
+
+    const options = {
+      method: Method.GET,
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+      },
+    };
+
+    const response = await fetch(
+      "https://api.themoviedb.org/3/genre/movie/list?language=en",
+      options
+    );
+    const data = await response.json();
+
+    const genres = data.genres.map((genre: Genre) => {
+      return {
+        value: `${genre.id}`,
+        label: genre.name,
+      };
+    });
+    res.status(200).json(genres);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "something wrong!" });
