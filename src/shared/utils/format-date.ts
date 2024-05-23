@@ -5,6 +5,7 @@ export const formatYear = (date: string) => {
 };
 
 export const formatDate = (date: string) => {
+  if (!date) return "";
   const months = [
     "January",
     "February",

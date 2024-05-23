@@ -116,7 +116,7 @@ export const Card: FC<CardProps> = ({
             height={imageSize.h}
             flex="none"
             component={Image}
-            fallbackSrc="/no-poster.png"
+            fallbackSrc="/no-poster.jpg"
             alt="poster"
           />
           <Flex

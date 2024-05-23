@@ -17,15 +17,17 @@ export const ResetFiltersBtn: FC<ResetFiltersBtnProps> = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const handleReset = () => {
+    dispatch(resetFilters(filters));
+    reset();
+  };
+
   return (
     <Button
       classNames={classes}
       variant="transparent"
       mt={31}
-      onClick={() => {
-        dispatch(resetFilters(filters));
-        reset();
-      }}
+      onClick={() => handleReset()}
       disabled={isResetValues}
     >
       Reset filters

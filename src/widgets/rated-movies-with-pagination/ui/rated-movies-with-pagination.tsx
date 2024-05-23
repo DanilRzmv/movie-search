@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { Group, Stack } from "@mantine/core";
 import { CardMovie } from "../../../features/card-movie";
 import { PaginationUI } from "../../../entities/pagination";
+import { EmptyMovies } from "../../../shared/ui/empty-movies/empty-movies";
 import { chunk } from "../utils/chunk-data";
 import { MoviesWithGenresLabel } from "../../../shared/type/type";
 
@@ -30,15 +31,19 @@ export const RatedMoviesWithPagination: FC<RatedMoviesWithPaginationProps> = ({
     <CardMovie key={movie.id} movie={movie} />
   ));
 
-  return (
+  const RatedMoviesWithPaginationRender = movies ? (
     <Stack gap={24} mt={40} pb={82}>
       <Group justify="center">{movies}</Group>
       <PaginationUI
         total_pages={paginatedData.length}
-        value={activePage}
+        activePage={activePage}
         onChange={setPage}
         position="center"
       />
     </Stack>
+  ) : (
+    <EmptyMovies />
   );
+
+  return RatedMoviesWithPaginationRender;
 };

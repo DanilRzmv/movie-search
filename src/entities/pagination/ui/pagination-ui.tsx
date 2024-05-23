@@ -6,26 +6,45 @@ interface PaginationUIProps {
   onChange:
     | Dispatch<SetStateAction<number | null>>
     | Dispatch<SetStateAction<number>>;
-  value: number;
+  activePage: number;
   position: string;
   total_pages: number;
 }
 
 export const PaginationUI: FC<PaginationUIProps> = ({
   onChange,
-  value,
+  activePage,
   position,
   total_pages,
 }) => {
+  const getItemProps = (page: number) => {
+    let startPage = Math.max(1, activePage - 1);
+    let endPage = Math.min(total_pages, activePage + 1);
+
+    if (activePage === 1) {
+      endPage = Math.min(total_pages, 3);
+    }
+
+    if (activePage === total_pages) {
+      startPage = Math.max(1, total_pages - 2);
+    }
+
+    if (page < startPage || page > endPage) {
+      return { style: { display: "none" } };
+    }
+
+    return {};
+  };
+
   return (
     <Pagination
       styles={{ root: { alignSelf: position } }}
       classNames={classes}
       total={total_pages}
-      boundaries={0}
+      getItemProps={getItemProps}
       color="purple.5"
       onChange={onChange}
-      value={value}
+      value={activePage}
     />
   );
 };

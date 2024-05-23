@@ -21,14 +21,12 @@ export default async function handler(
     if (!validate.success) {
       const { errors } = validate.error;
 
-      return res
-        .status(400)
-        .json({
-          message: "Invalid request",
-          errors,
-          movies: [],
-          total_pages: 0,
-        });
+      return res.status(400).json({
+        message: "Invalid request",
+        errors,
+        movies: [],
+        total_pages: 0,
+      });
     }
 
     const {
@@ -54,7 +52,7 @@ export default async function handler(
     );
     const data = await response.json();
 
-    const total_pages = data.total_pages;
+    const total_pages = Math.min(data.total_pages, 500);
 
     const movies = data.results.map((movie: Movie) => {
       return {
