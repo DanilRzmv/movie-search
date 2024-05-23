@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export interface Filters {
   with_genres: string[];
   primary_release_year: string;
@@ -10,6 +12,13 @@ export interface Filters {
 export interface SelectDataType {
   value: string;
   label: string;
+}
+
+export interface ResponseMessage {
+  message?: string;
+  errors?: z.ZodIssue[];
+  movies: [];
+  total_pages: number;
 }
 
 export interface Movie {

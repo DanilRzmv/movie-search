@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState, getMovies } from "../../../root";
-import { filters } from "../../../shared/constants/filters";
 import {
   GetMoviesState,
   MoviesWithGenresLabel,
 } from "../../../shared/type/type";
 
 export const useMoviesWithPagination = () => {
-  const { movies, genres, loading } = useSelector<RootState>(
+  const { movies, genres, loading, filters } = useSelector<RootState>(
     (state) => state.movies
   ) as GetMoviesState;
   const dispatch = useDispatch<AppDispatch>();
@@ -19,7 +18,8 @@ export const useMoviesWithPagination = () => {
 
   if (loading) {
     return { loading, movies: [] };
-  } else {
+  }
+  if (movies.length > 0) {
     const ratedMovies: MoviesWithGenresLabel[] = JSON.parse(
       localStorage.getItem("rated-movies") ?? "[]"
     );
@@ -54,4 +54,6 @@ export const useMoviesWithPagination = () => {
 
     return { loading, movies: updatedMovies };
   }
+
+  return { loading, movies: [] };
 };

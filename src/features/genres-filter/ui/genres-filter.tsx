@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres } from "../api/get-genres";
 import { GetMoviesState } from "../../../shared/type/type";

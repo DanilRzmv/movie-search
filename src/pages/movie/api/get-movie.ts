@@ -1,4 +1,3 @@
-import { movieDetailDefault } from "./../../../shared/constants/movie-detail";
 import { Method } from "../../../shared/constants/http-method";
 import { MovieDetail, Video } from "../../../shared/type/type";
 
@@ -54,6 +53,6 @@ export const getMovie = async (movieId: string) => {
     return movie;
   } catch (error) {
     console.error(error);
-    return { ...movieDetailDefault };
+    return null;
   }
 };
