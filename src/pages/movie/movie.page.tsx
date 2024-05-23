@@ -1,15 +1,25 @@
+import { useEffect } from "react";
 import Link from "next/link";
 import { InferGetServerSidePropsType } from "next";
+import { useDispatch } from "react-redux";
+import { AppDispatch, resetFilters } from "../../root";
 import { Anchor, Breadcrumbs, Stack } from "@mantine/core";
 import { getServerSideProps } from "../../../pages/movies/[movieId]";
 import { MovieDetail } from "../../widgets/movie-detail";
 import { CardMovieBig } from "../../features/card-movie-big";
 import { MainContainer } from "../../shared/ui/main-container/main-container";
+import { filters } from "../../shared/constants/filters";
 import { Genre, MoviesWithGenresLabel } from "../../shared/type/type";
 
 export const MoviePage = ({
   movie,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(resetFilters(filters));
+  }, [dispatch]);
+
   const ratedMovies: MoviesWithGenresLabel[] = JSON.parse(
     localStorage.getItem("rated-movies") ?? "[]"
   );

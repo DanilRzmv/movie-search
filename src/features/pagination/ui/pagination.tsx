@@ -20,7 +20,7 @@ export const Pagination = () => {
   }, [paginationPage, dispatch]);
   return (
     <PaginationUI
-      value={page}
+      activePage={page}
       onChange={setPaginationPage}
       position="flex-end"
       total_pages={total_pages}

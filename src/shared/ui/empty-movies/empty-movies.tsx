@@ -6,7 +6,7 @@ export const EmptyMovies = () => {
   return (
     <Stack gap="md" align="center">
       <Image src={EmptyMoviesSvg} alt="empty movies" />
-      <Text fw={600} size="xl">
+      <Text fw={600} size="xl" style={{ textAlign: "center" }}>
         We don&apos;t have such movies, look for another one
       </Text>
     </Stack>

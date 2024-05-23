@@ -1,19 +1,18 @@
 import { FC, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "@mantine/form";
 import { zodResolver } from "mantine-form-zod-resolver";
 import { z } from "zod";
 import { Flex } from "@mantine/core";
-import { AppDispatch, RootState, getMovies, setFilters } from "../../../root";
+import { AppDispatch, getMovies, setFilters } from "../../../root";
 import debounce from "debounce";
 import { GenresFilter } from "../../../features/genres-filter";
 import { YearFilter } from "../../../features/year-filter";
 import { RatingFilter } from "../../../features/rating-filter";
 import { ResetFiltersBtn } from "../../../features/reset-filter";
 import { SortByFilter } from "../../../features/sort-by-filter";
-import { filters as initialFilters } from "../../../shared/constants/filters";
+import { filters } from "../../../shared/constants/filters";
 import { CheckResetForm } from "../utils/check-reset-form";
-import { GetMoviesState } from "../../../shared/type/type";
 
 const schema = z
   .object({
@@ -33,9 +32,6 @@ const schema = z
   );
 
 export const FiltersSection: FC = () => {
-  const { filters } = useSelector<RootState>(
-    (state) => state.movies
-  ) as GetMoviesState;
   const dispatch = useDispatch<AppDispatch>();
   const [isResetValues, setIsResetValues] = useState(true);
 
@@ -51,7 +47,7 @@ export const FiltersSection: FC = () => {
     initialValues: { ...filters },
     onValuesChange: (values) => {
       onSubmit(() => {
-        setIsResetValues(CheckResetForm(initialFilters, values));
+        setIsResetValues(CheckResetForm(filters, values));
         dispatch(setFilters({ ...values }));
         debouncedGetMovies.current(values);
       })();
