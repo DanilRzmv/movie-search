@@ -88,6 +88,6 @@ export interface GetMoviesState {
   movies: Movie[];
   total_pages: number;
   loading: boolean;
-  reRenderId: number;
+  reRender: boolean;
   searchRatedMovie: string;
 }

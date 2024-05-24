@@ -15,7 +15,7 @@ const initialState: GetMoviesState = {
   movies: [],
   total_pages: 1,
   loading: true,
-  reRenderId: 0,
+  reRender: false,
   searchRatedMovie: "",
 };
 
@@ -39,7 +39,7 @@ const getMoviesSlice = createSlice({
       state.loading = action.payload;
     },
     reRenderListRatedMovie(state, action) {
-      state.reRenderId = action.payload;
+      state.reRender = action.payload;
     },
     setSearchRatedMovie(state, action) {
       state.searchRatedMovie = action.payload;

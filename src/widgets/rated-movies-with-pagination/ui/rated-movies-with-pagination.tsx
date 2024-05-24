@@ -31,6 +31,8 @@ export const RatedMoviesWithPagination: FC<RatedMoviesWithPaginationProps> = ({
     <CardMovie key={movie.id} movie={movie} />
   ));
 
+  if (!movies && !searchRatedMovie.trim()) setPage(activePage - 1);
+
   const RatedMoviesWithPaginationRender = movies ? (
     <Stack gap={24} mt={40} pb={82}>
       <Group justify="center">{movies}</Group>

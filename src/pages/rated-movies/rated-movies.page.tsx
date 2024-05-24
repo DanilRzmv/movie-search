@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, resetFilters } from "../../root";
+import {
+  AppDispatch,
+  RootState,
+  reRenderListRatedMovie,
+  resetFilters,
+} from "../../root";
 import { SearchRatedMovieWidget } from "../../widgets/search-rated-movie-widget";
 import { RatedMoviesWithPagination } from "../../widgets/rated-movies-with-pagination";
 import { NotFound } from "../../entities/not-found";
@@ -10,7 +15,7 @@ import { GetMoviesState, MoviesWithGenresLabel } from "../../shared/type/type";
 import NotFoundRatedMovies from "../../../public/not-found-rated-movies.svg";
 
 export const RatedMoviesPage = () => {
-  const { reRenderId, searchRatedMovie } = useSelector<RootState>(
+  const { reRender, searchRatedMovie } = useSelector<RootState>(
     (state) => state.movies
   ) as GetMoviesState;
   const dispatch = useDispatch<AppDispatch>();
@@ -25,7 +30,8 @@ export const RatedMoviesPage = () => {
       localStorage.getItem("rated-movies") ?? "[]"
     );
     setRatedMovies(ratedMovies);
-  }, [reRenderId]);
+    dispatch(reRenderListRatedMovie(false));
+  }, [dispatch, reRender]);
 
   const ratedMoviesRender =
     ratedMovies.length > 0 ? (

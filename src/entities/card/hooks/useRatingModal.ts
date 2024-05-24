@@ -22,13 +22,14 @@ export const useRatingModal = (
   const onSave = (ratingModal: number) => {
     setIsRating(ratingModal);
     setRatedMovie(movie, ratingModal);
+    dispatch(reRenderListRatedMovie(true));
     close();
   };
 
   const onRemove = () => {
     setIsRating(null);
     removeRatedMovie(id);
-    dispatch(reRenderListRatedMovie(id));
+    dispatch(reRenderListRatedMovie(true));
     close();
   };
 
