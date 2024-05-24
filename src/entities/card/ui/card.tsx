@@ -6,7 +6,9 @@ import {
   Image as ImageMantine,
   Flex,
   Stack,
+  Loader,
 } from "@mantine/core";
+import { useInView } from "react-intersection-observer";
 import { useRatingModal } from "../hooks/useRatingModal";
 import { ModalUI } from "../../../shared/ui/modal/modal";
 import { formatYear } from "../../../shared/utils/format-date";
@@ -72,6 +74,7 @@ export const Card: FC<CardProps> = ({
     onRemove,
     close,
   } = useRatingModal(movie, id, rating);
+  const { ref, inView } = useInView({ threshold: 0.7, triggerOnce: true });
 
   const renderAdditionalInfo =
     additionalInfo &&
@@ -95,6 +98,7 @@ export const Card: FC<CardProps> = ({
         onRemove={onRemove}
       />
       <Flex
+        ref={ref}
         className={classes.card}
         justify="space-between"
         maw={maxWidth.maxWidthMainContainer}
@@ -108,17 +112,29 @@ export const Card: FC<CardProps> = ({
           w="100%"
           onClick={onCardClick}
         >
-          <ImageMantine
-            src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-            w={imageSize.w}
-            h={imageSize.h}
-            width={imageSize.w}
-            height={imageSize.h}
-            flex="none"
-            component={Image}
-            fallbackSrc="/no-poster.jpg"
-            alt="poster"
-          />
+          {inView ? (
+            <ImageMantine
+              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+              w={imageSize.w}
+              h={imageSize.h}
+              width={imageSize.w}
+              height={imageSize.h}
+              flex="none"
+              component={Image}
+              fallbackSrc="/no-poster.jpg"
+              alt="poster"
+            />
+          ) : (
+            <Flex
+              align="center"
+              justify="center"
+              w={imageSize.w}
+              h={imageSize.h}
+              bg="gray.2"
+            >
+              <Loader color="purple.5" />
+            </Flex>
+          )}
           <Flex
             direction="column"
             justify="space-between"
